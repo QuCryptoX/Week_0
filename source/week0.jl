@@ -113,9 +113,9 @@ function unitary_transform_plot(U)
     @manipulate for θ=-180:15:180
         θ_rad  = 2*pi*θ/360
         
-        ket = [cos(θ_rad ),sin(θ_rad )]
+        ket = [cos(θ_rad),sin(θ_rad)]
         ketT = U*ket
-        θ_radT = acos(ketT[1])
+        θ_radT = sign(ketT[1])*acos(ketT[1])
 
         withfig(fig) do        
             ax = axes(polar = "true")
@@ -221,7 +221,7 @@ function projective_measurement_plot()
 end
 
 
-# plot 2D vector representing 1 qubit and its "hadamard image".
+# plot standard basis and pi/8 rotated basis.
 function pi8_rotated_basis_plot()
     fig = figure(figsize=(4,4))
     r = [0,1]
