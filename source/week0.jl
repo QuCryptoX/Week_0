@@ -115,7 +115,7 @@ function unitary_transform_plot(U)
         
         ket = [cos(θ_rad),sin(θ_rad)]
         ketT = U*ket
-        θ_radT = sign(ketT[1])*acos(ketT[1])
+        θ_radT = sign(ketT[2])*acos(ketT[1])
 
         withfig(fig) do        
             ax = axes(polar = "true")
