@@ -49,7 +49,7 @@ function single_state_vector_plot()
             plot(θ_rad*ones(2),r,color="#ee8d18", label = "\$ |\\psi(\\theta)\\rangle \$");
             scatter(θ_rad,1,s=50, c="red", alpha=0.5);
             title("\$|\\psi(\\theta)\\rangle =\$ $α \$|0\\rangle\$ + $β \$|1\\rangle\$",y=1.12)
-            legend(loc=6)
+            legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)   
         end
     end
 end
@@ -98,9 +98,9 @@ function measurement_plot()
                         c = "blue", 
                         alpha = 0.5);
 
-            title("\$ P\_{b=0} = |\\langle b_0 | \\psi \\rangle|^2 \$ = $(P_x)",
+            title("\$ P\_{B=0} = |\\langle b_0 | \\psi \\rangle|^2 \$ = $(P_x)",
                      y =1.12)
-            legend(loc=6)            
+            legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)               
         end
     end
 end
@@ -113,7 +113,7 @@ function unitary_transform_plot(U)
     @manipulate for θ=-180:15:180
         θ_rad  = 2*pi*θ/360
         
-        ket = [cos(θ_rad),sin(θ_rad)]
+        ket = [cos(θ_rad ),sin(θ_rad )]
         ketT = U*ket
         θ_radT = sign(ketT[2])*acos(ketT[1])
 
@@ -148,7 +148,7 @@ function unitary_transform_plot(U)
                             alpha = 0.5);
                    
             title("", y =1.12)
-            legend(loc=6)            
+            legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)        
         end
     end
 end
@@ -160,10 +160,10 @@ function projective_measurement_plot()
     @manipulate for state in ["0","+","-"]
 
         θ_rad = 2*pi*vDict[state]/360
-        b_0_rad = pi/3 # measurement bases
-        b_1_rad = -pi/6
-        inner_0 = round(abs(cos(θ_rad - b_0_rad)),3)
-        inner_1 = round(abs(cos(θ_rad - b_1_rad)),3)
+        b_0_rad = acos(sqrt(1/3))
+        b_1_rad = b_0_rad - pi/2
+        inner_0 = cos(θ_rad - b_0_rad)
+        inner_1 = cos(θ_rad - b_1_rad)
         p_0 = round(inner_0^2,3)
         p_1 = round(inner_1^2,3)
 
@@ -215,13 +215,13 @@ function projective_measurement_plot()
 
             title("\$ p\_0 = |\\langle b_0 | \\psi \\rangle|^2 \$ = $(p_0), \$ p\_1 = |\\langle b_1 | \\psi \\rangle|^2 \$ = $(p_1)",
                      y =1.12)
-            legend(loc=6)            
+            legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)           
         end
     end
 end
 
 
-# plot standard basis and pi/8 rotated basis.
+# plot 2D vector representing 1 qubit and its "hadamard image".
 function pi8_rotated_basis_plot()
     fig = figure(figsize=(4,4))
     r = [0,1]
@@ -236,7 +236,7 @@ function pi8_rotated_basis_plot()
     plot(0*[1,1],
             [0,1],
             color = "red",
-            label = "\$|0_A\\rangle\$,\$|1_A\\rangle\$ ");
+            label = "\$|0\\rangle\$,\$|1\\rangle\$ ");
     scatter(0, 
                 1,
                 s = 50, 
@@ -251,7 +251,7 @@ function pi8_rotated_basis_plot()
     plot(0.125*pi*[1,1],
             [0,1],
             color = "blue",
-            label = "\$|0_B\\rangle\$,\$|1_B\\rangle\$ ");
+            label = "\$|0_L\\rangle\$,\$|1_L\\rangle\$ ");
     scatter(0.125*pi, 
                 1,
                 s = 50, 
@@ -265,5 +265,5 @@ function pi8_rotated_basis_plot()
                 c = "blue", 
                 alpha = 0.5);
     title("", y =1.12)
-    legend(loc=3)            
+    legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)           
 end

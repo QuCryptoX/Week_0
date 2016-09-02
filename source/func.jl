@@ -23,7 +23,7 @@
 # Summary: can be used to transform a qubit state vector into its Bloch coordinate vector
 # Input: two (complex) numbers,
 # Output: cartesian Bloch coordinate vector.
-function ket_to_bloch(ket::Vector, digits = 3)
+function ket_to_bloch(ket::Array, digits = 3)
     α = ket[1]
     β = ket[2]
     v_x = α*conj(β) + conj(α)*β  # = 2Re(α*conj(β))
