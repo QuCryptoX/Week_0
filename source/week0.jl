@@ -167,6 +167,11 @@ function projective_measurement_plot()
         p_0 = round(inner_0^2,3)
         p_1 = round(inner_1^2,3)
 
+        # Due to https://github.com/matplotlib/matplotlib/issues/2133,
+        # ensure that all polar radii are positive.
+        b_0_pos_rad = b_0_rad + (inner_0 < 0 ? (inner_0 *= -1; pi) : 0)
+        b_1_pos_rad = b_1_rad + (inner_1 < 0 ? (inner_1 *= -1; pi) : 0)
+        
         withfig(fig) do        
             ax = axes(polar = "true")
             ax[:set_ylim]([0,1.1])
@@ -189,7 +194,7 @@ function projective_measurement_plot()
                     [0,1], 
                     linestyle=":", 
                     color="blue");
-            plot(b_0_rad*ones(2), 
+            plot(b_0_pos_rad*ones(2), 
                     inner_0*[0,1], 
                     color="blue", 
                     label="\$|b_0\\rangle\$");
@@ -203,7 +208,7 @@ function projective_measurement_plot()
                     [0,1], 
                     linestyle=":", 
                         color="green");
-            plot(b_1_rad*ones(2), 
+            plot(b_1_pos_rad*ones(2), 
                     inner_1*[0,1], 
                         color="green", 
                     label="\$|b_1\\rangle\$");
