@@ -29,13 +29,13 @@ function ket_to_bloch(ket::Array, digits = 3)
     v_x = α*conj(β) + conj(α)*β  # = 2Re(α*conj(β))
     v_y = im*α*conj(β) - im*conj(α)*β # = -2Re(α*conj(β))
     v_z = α*conj(α) - β*conj(β)
-    return round(real([v_x,v_y,v_z]),digits)
+    return round.(real([v_x,v_y,v_z]),digits)
 end
 
 function ket_to_bloch(α::Number,β::Number, digits = 3)
     v_x = α*conj(β) + conj(α)*β  # = 2Re(α*conj(β))
     v_y = im*α*conj(β) - im*conj(α)*β # = -2Re(α*conj(β))
     v_z = α*conj(α) - β*conj(β)
-    return round(real([v_x,v_y,v_z]),digits)
+    return round.(real([v_x,v_y,v_z]),digits)
 end
 
