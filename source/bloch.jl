@@ -54,7 +54,7 @@ type Bloch
     view_elevation::Float64
     view_azimuth::Float64
     elements::Vector{Element} # our points/vectors
-    colors::Vector{ASCIIString}
+    colors::Vector{String}
 end
 
 # Standard Initialization
@@ -118,9 +118,9 @@ function render(b::Bloch,rotate_z = 0)
     u = linspace(0,2*π,n);
     v = linspace(0,π,n);
 
-    x = cos(u) * sin(v)';
-    y = sin(u) * sin(v)';
-    z = ones(n) * cos(v)';
+    x = cos.(u) * sin.(v)';
+    y = sin.(u) * sin.(v)';
+    z = ones(n) * cos.(v)';
 
     # Sphere surface
     surf(x,y,z, rstride=1, cstride=1, color=b.sphere_color, linewidth=0, shade=true)
@@ -129,8 +129,8 @@ function render(b::Bloch,rotate_z = 0)
     mesh(x,y,z, rstride=10, cstride=6, color=b.mesh_color)
 
     # plot equator
-    plot( cos(u), sin(u), zs=0, color=b.equator_color, linewidth= 1 ) 
-    plot( cos(u), sin(u), zs=0, zdir="x", color=b.equator_color, linewidth= 1 ) 
+    plot( cos.(u), sin.(u), zs=0, color=b.equator_color, linewidth= 1 )
+    plot( cos.(u), sin.(u), zs=0, zdir="x", color=b.equator_color, linewidth= 1 )
 
     # plot xyz bloch sphere axis
     span = linspace(-1,1,2)
