@@ -1,4 +1,4 @@
-# Copyright (c) 2016, QuTech, TU Delft, written by W. Hekman and S. Wehner
+# Copyright (c) 2018, QuTech, TU Delft, written by W. Hekman and S. Wehner
 # All rights reserved.
 # 
 # Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
